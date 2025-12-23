@@ -101,3 +101,7 @@ MVPリリース時
 | インフラ | Vercel / Render / Neon / Amazon S3 |
 | ライブラリ | devise / devise_token_auth / devise-i18n / aws-sdk-s3 google-id-token / geocoder / kaminari / ransack |
 | 外部API | Google Maps API / Google Places API / 外部飲食店API | 
+
+# ■ ER図
+
+![alt text](image.png)
