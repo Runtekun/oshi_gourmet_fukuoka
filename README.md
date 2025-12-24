@@ -102,6 +102,9 @@ MVPリリース時
 | ライブラリ | devise / devise_token_auth / devise-i18n / aws-sdk-s3 google-id-token / geocoder / kaminari / ransack |
 | 外部API | Google Maps API / Google Places API / 外部飲食店API | 
 
+※ 外部飲食店APIで取得できない店舗は、
+Google Places API を用いてユーザーが追加できる設計としています。
+
 # ■ ER図
 
 ![alt text](image.png)
