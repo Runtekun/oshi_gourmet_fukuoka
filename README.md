@@ -105,6 +105,10 @@ MVPリリース時
 ※ 外部飲食店APIで取得できない店舗は、
 Google Places API を用いてユーザーが追加できる設計としています。
 
+# ■ 画面遷移図
+
+https://www.figma.com/design/cjX46wAH1vZRANEhWRcUG6/%E6%8E%A8%E3%81%97%E3%82%B0%E3%83%AB%E3%83%A1%E7%A6%8F%E5%B2%A1?node-id=0-1&p=f&t=ulkeLMv9eAXElTxk-0
+
 # ■ ER図
 
 ![alt text](image.png)
