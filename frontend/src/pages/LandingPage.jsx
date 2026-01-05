@@ -4,7 +4,7 @@ export default function LandingPage() {
       <div className="mx-auto max-w-4xl">
 
         {/* ヘッダー */}
-        <header className="mb-16">
+        <header className="mb-16 text-center">
           <h1 className="text-3xl font-bold text-gray-900">
             推しグルメ福岡
           </h1>
@@ -14,7 +14,7 @@ export default function LandingPage() {
         </header>
 
         {/* サービスの概要 */}
-        <section className="mb-12">
+        <section className="mb-12 text-center">
           <h2 className="mb-4 text-2xl font-semibold text-gray-900">
             このサービスでできること
           </h2>
@@ -26,7 +26,7 @@ export default function LandingPage() {
         </section>
 
         {/* 想定するユーザー層 */}
-        <section className="mb-12">
+        <section className="mb-12 text-center">
           <h2 className="mb-4 text-2xl font-semibold text-gray-900">
             こんな人におすすめ
           </h2>
@@ -47,7 +47,7 @@ export default function LandingPage() {
             <button className="rounded-md bg-blue-600 px-6 py-2 text-white hover:bg-blue-700">
               新規登録
             </button>
-            <button className="rounded-md border border-gray-300 px-6 py-2 text-gray-700 hover:bg-gray-100">
+            <button className="rounded-md bg-orange-600 px-6 py-2 text-white hover:bg-orange-700">
               ログイン
             </button>
           </div>
