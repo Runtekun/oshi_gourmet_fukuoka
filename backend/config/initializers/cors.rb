@@ -7,7 +7,7 @@
 
  Rails.application.config.middleware.insert_before 0, Rack::Cors do
    allow do
-     origins "localhost:3000", "本番環境のURLをここに追加予定"
+     origins "localhost:3000", "https://oshi-gourmet-fukuoka.onrender.com"
 
     resource "*",
        headers: :any,
