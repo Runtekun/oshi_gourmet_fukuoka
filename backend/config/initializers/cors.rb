@@ -7,7 +7,8 @@
 
  Rails.application.config.middleware.insert_before 0, Rack::Cors do
    allow do
-     origins "localhost:3000", "https://oshi-gourmet-fukuoka.onrender.com"
+     origins "http://localhost:8000",
+             "https://oshi-gourmet-fukuoka.vercel.app"
 
     resource "*",
        headers: :any,
