@@ -42,4 +42,4 @@ end
 
 # CORS対応のため追加
 gem "rack-cors" 
-
+gem "devise"
