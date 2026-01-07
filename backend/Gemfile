@@ -43,3 +43,6 @@ end
 # CORS対応のため追加
 gem "rack-cors" 
 gem "devise"
+# SPA（React）向けに、Deviseをトークン認証対応にするため追加
+gem "devise_token_auth"
+gem 'omniauth'
