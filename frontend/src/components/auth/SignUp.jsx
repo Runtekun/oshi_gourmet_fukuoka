@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { useAuth } from "@/lib/auth-context"
+import { useAuth } from "@/contexts/auth-context"
 
 export default function SignUp() {
     const { signUp, isLoading } = useAuth();
     const [username, setUsername] = useState("")
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
 
     const handleSubmit = async (e) => {
