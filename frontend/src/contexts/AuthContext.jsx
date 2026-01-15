@@ -37,7 +37,7 @@ import { createContext, useContext, useState } from "react";
 
       // ステータスが200番台以外ならエラー
       if (!res.ok) {
-        throw new Error("登録に失敗しました");
+        throw new Error("登録に失敗しました もう一度お試しください。");
       }
 
       // レスポンスをJSONで受け取る
@@ -49,7 +49,7 @@ import { createContext, useContext, useState } from "react";
       return data;
 
     } catch (err) {
-      setError("登録に失敗しました");
+      setError("登録に失敗しました もう一度お試しください。");
       throw err;
     } finally {
       setIsLoading(false);

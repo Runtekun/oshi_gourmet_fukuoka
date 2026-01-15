@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "./contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function SignUp() {
     const { signUp, isLoading } = useAuth();
@@ -36,7 +36,7 @@ export default function SignUp() {
             await signUp({ username, email, password });
             alert("登録に成功しました！");
         } catch (err) {
-            setError("登録に失敗しました");
+            setError("登録に失敗しました。もう一度お試しください。");
         }
     };
 
