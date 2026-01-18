@@ -8,5 +8,4 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root to: 'landing#index'
-  post 'api/registrations', to: 'api/registrations#create'
 end
