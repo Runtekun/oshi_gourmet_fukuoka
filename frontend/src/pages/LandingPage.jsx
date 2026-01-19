@@ -1,3 +1,6 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white px-6 py-10">
@@ -44,9 +47,11 @@ export default function LandingPage() {
           </p>
 
           <div className="flex justify-center gap-4">
-            <button className="rounded-md bg-blue-600 px-6 py-2 text-white hover:bg-blue-700">
-              新規登録
-            </button>
+            <Link to="/signup">
+              <button className="rounded-md bg-blue-600 px-6 py-2 text-white hover:bg-blue-700">
+                新規登録
+              </button>
+            </Link>
             <button className="rounded-md bg-orange-600 px-6 py-2 text-white hover:bg-orange-700">
               ログイン
             </button>
