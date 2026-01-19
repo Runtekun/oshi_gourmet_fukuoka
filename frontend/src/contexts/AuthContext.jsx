@@ -20,18 +20,16 @@ import { createContext, useContext, useState } from "react";
 
     // APIエンドポイントにPOSTリクエストを送信
     try {
-      const res = await fetch("http://localhost:3000/api/signup", {
+      const res = await fetch("http://localhost:3000/auth", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // クッキーを含める
         body: JSON.stringify({
-          user: {
-            name: username,
-            email,
-            password,
-          },
+          email, 
+          password,
+          password_confirmation: password,
+          name: username,
         }),
       });
 
@@ -40,13 +38,28 @@ import { createContext, useContext, useState } from "react";
         throw new Error("登録に失敗しました もう一度お試しください。");
       }
 
-      // レスポンスをJSONで受け取る
-      const data = await res.json();
+      // レスポンスヘッダーから認証情報を取得
+      const accessToken = res.headers.get("access-token");
+      const client = res.headers.get("client");
+      const uid = res.headers.get("uid");
+
+      // 認証情報をローカルストレージに保存
+      if (accessToken && client && uid) {
+      localStorage.setItem("access-token", accessToken);
+      localStorage.setItem("client", client);
+      localStorage.setItem("uid", uid);
+      }
+
+      // レスポンスボディからユーザー情報を取得
+      const responseBody = await res.json();
+
+      // ユーザーデータを取得
+      const userData = responseBody.data;
 
       // ユーザー情報を状態に保存
-      setUser(data.user);
+      setUser(userData);
 
-      return data;
+      return userData;
 
     } catch (err) {
       setError("登録に失敗しました もう一度お試しください。");
