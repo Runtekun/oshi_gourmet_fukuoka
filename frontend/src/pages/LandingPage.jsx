@@ -52,9 +52,12 @@ export default function LandingPage() {
                 新規登録
               </button>
             </Link>
+
+            <Link to="/signin">
             <button className="rounded-md bg-orange-600 px-6 py-2 text-white hover:bg-orange-700">
               ログイン
             </button>
+            </Link>
           </div>
         </section>
 
