@@ -115,6 +115,36 @@ import { createContext, useContext, useState } from "react";
     }
   };
 
+  // ログアウト処理
+  const logout = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      await fetch("http://localhost:3000/auth/sign_out", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "access-token": localStorage.getItem("access-token"),
+          client: localStorage.getItem("client"),
+          uid: localStorage.getItem("uid"),
+        },
+      });
+  
+      // ローカルストレージから認証情報を削除
+      localStorage.removeItem("access-token");
+      localStorage.removeItem("client");
+      localStorage.removeItem("uid");
+  
+      // ユーザー情報をクリア
+      setUser(null);
+    } catch (err) {
+      setError("ログアウトに失敗しました もう一度お試しください。");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Contextの値を提供
   return (
     <AuthContext.Provider
@@ -124,6 +154,7 @@ import { createContext, useContext, useState } from "react";
         error,
         signUp,
         login,
+        logout,
       }}
     >
       {children}
