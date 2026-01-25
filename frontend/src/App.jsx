@@ -3,6 +3,7 @@ import LandingPage from "./pages/LandingPage";
 import { AuthProvider } from "./contexts/AuthContext";
 import SignUp from "./components/auth/SignUp";
 import SignIn from "./components/auth/SignIn";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/home" element={<HomePage />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
