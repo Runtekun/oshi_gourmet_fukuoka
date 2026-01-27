@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from "react";
 
-
   // 認証用のContextを作成（初期値はnull）
   const AuthContext = createContext(null);
 
@@ -69,6 +68,83 @@ import { createContext, useContext, useState } from "react";
     }
   };
 
+  // ログイン処理
+  const login = async ({ email, password }) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch("http://localhost:3000/auth/sign_in", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+  
+      if (!res.ok) {
+        throw new Error("ログインに失敗しました  もう一度お試しください。");
+      }
+  
+      const accessToken = res.headers.get("access-token");
+      const client = res.headers.get("client");
+      const uid = res.headers.get("uid");
+  
+      if (accessToken && client && uid) {
+        localStorage.setItem("access-token", accessToken);
+        localStorage.setItem("client", client);
+        localStorage.setItem("uid", uid);
+      }
+  
+      const responseBody = await res.json();
+
+      const userData = responseBody.data;
+
+      setUser(userData);
+  
+      return userData;
+
+    } catch (err) {
+      setError("ログインに失敗しました");
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // ログアウト処理
+  const logout = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      await fetch("http://localhost:3000/auth/sign_out", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "access-token": localStorage.getItem("access-token"),
+          client: localStorage.getItem("client"),
+          uid: localStorage.getItem("uid"),
+        },
+      });
+  
+      // ローカルストレージから認証情報を削除
+      localStorage.removeItem("access-token");
+      localStorage.removeItem("client");
+      localStorage.removeItem("uid");
+  
+      // ユーザー情報をクリア
+      setUser(null);
+    } catch (err) {
+      setError("ログアウトに失敗しました もう一度お試しください。");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Contextの値を提供
   return (
     <AuthContext.Provider
@@ -77,6 +153,8 @@ import { createContext, useContext, useState } from "react";
         isLoading,
         error,
         signUp,
+        login,
+        logout,
       }}
     >
       {children}

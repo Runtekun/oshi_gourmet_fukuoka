@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
     const { signUp, isLoading } = useAuth();
@@ -7,6 +8,7 @@ export default function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,6 +37,7 @@ export default function SignUp() {
         try {
             await signUp({ username, email, password });
             alert("登録に成功しました！");
+            navigate("/home");
         } catch (err) {
             setError("登録に失敗しました。もう一度お試しください。");
         }
