@@ -1,0 +1,15 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+        introduction: 自己紹介
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: を入力してください
+              too_long: は20文字以内で入力してください
+            introduction:
+              too_long: は200文字以内で入力してください

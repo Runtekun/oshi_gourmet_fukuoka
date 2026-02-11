@@ -8,4 +8,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root to: 'landing#index'
+
+  namespace :api do
+    namespace :v1 do
+      resource :user, only: [:show, :update]
+    end
+  end
 end

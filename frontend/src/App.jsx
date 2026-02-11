@@ -6,6 +6,7 @@ import SignIn from "./components/auth/SignIn";
 import HomePage from "./pages/HomePage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
@@ -18,10 +19,19 @@ function App() {
           <Route path="/home" element={
             <ProtectedRoute>
               <Layout>
-                <HomePage/ >
+                <HomePage />
               </Layout> 
             </ProtectedRoute>
             } 
+          />
+
+          <Route path="/profile" element={
+            <ProtectedRoute>
+              <Layout>
+                <ProfilePage />
+              </Layout>
+            </ProtectedRoute>
+            }
           />
         </Routes>
       </BrowserRouter>
