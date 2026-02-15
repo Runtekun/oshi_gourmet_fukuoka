@@ -1,27 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Settings, Heart, Users, FileText } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 
 
 export default function ProfilePage() {
-  const [user, setUser] = useState(null);
   const [tab, setTab] = useState("reviews");
-  const [loading, setLoading] = useState(true);
+  const { user, isLoading } = useAuth();
 
-  useEffect(() => {
-    fetch("http://localhost:3000/api/v1/user", {
-      headers: {
-        "access-token": localStorage.getItem("access-token"),
-        client: localStorage.getItem("client"),
-        uid: localStorage.getItem("uid"),
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setUser(data))
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) return <p className="p-4">読み込み中...</p>;
+  if (isLoading) return <p className="p-4">読み込み中...</p>;
   if (!user) return null;
 
   return (

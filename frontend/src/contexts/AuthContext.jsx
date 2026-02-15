@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
   // 認証用のContextを作成（初期値はnull）
   const AuthContext = createContext(null);
@@ -8,9 +8,47 @@ import { createContext, useContext, useState } from "react";
   // ログイン中のユーザー情報
   const [user, setUser] = useState(null);
   // 読み込み状態
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   // エラーメッセージ
   const [error, setError] = useState(null);
+
+  // アプリ起動時にローカルストレージから認証情報を復元
+  useEffect(() => {
+    const accessToken = localStorage.getItem("access-token");
+    const client = localStorage.getItem("client");
+    const uid = localStorage.getItem("uid");
+  
+    if (!accessToken || !client || !uid) {
+      setIsLoading(false);
+      return;
+    }
+  
+    fetch("http://localhost:3000/api/v1/user", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "access-token": accessToken,
+        client: client,
+        uid: uid,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("ユーザー情報の取得に失敗しました");
+        return res.json();
+      })
+      .then((data) => {
+        setUser(data.data);
+      })
+      .catch(() => {
+        setUser(null);
+        localStorage.removeItem("access-token");
+        localStorage.removeItem("client");
+        localStorage.removeItem("uid");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
 
   // 新規登録処理
   const signUp = async ({ username, email, password }) => {
